@@ -9,7 +9,7 @@ snmp:
     - enable: True
     {% else %}
     - enable: False
-    {% end %}
+    {% endif %}
     - require:
       - pkg: {{ snmp.pkg }}
 
