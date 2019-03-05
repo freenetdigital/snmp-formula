@@ -5,7 +5,11 @@ snmp:
     - name: {{ snmp.pkg }}
   service.running:
     - name: {{ snmp.service }}
-    - enable: None
+    {% if grains["fqdn"] is match("svc-esb-*") %}
+    - enable: True
+    {% else %}
+    - enable: False
+    {% end %}
     - require:
       - pkg: {{ snmp.pkg }}
 

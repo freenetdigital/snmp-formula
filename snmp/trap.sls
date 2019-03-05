@@ -6,4 +6,8 @@ include:
 trap:
   service.running:
     - name: {{ snmp.servicetrap }}
-    - enable: None
+    {% if grains["fqdn"] is match("svc-esb-*") %}
+    - enable: True
+    {% else %}
+    - enable: False
+    {% end %}
